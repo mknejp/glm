@@ -44,34 +44,34 @@ namespace
 		int Error(0);
 		
 		{
-			glm::fangle a = glm::rad(0.f);
-			Error += glm::epsilonEqual(rad(a), 0.f, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), 0.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			Error += glm::epsilonEqual(radians(a), 0.f, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), 0.f, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(0.f);
-			Error += glm::epsilonEqual(rad(a), 0.f, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), 0.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			Error += glm::epsilonEqual(radians(a), 0.f, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), 0.f, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(pi);
-			Error += glm::epsilonEqual(rad(a), pi, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), 180.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(pi);
+			Error += glm::epsilonEqual(radians(a), pi, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), 180.f, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(180.f);
-			Error += glm::epsilonEqual(rad(a), pi, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), 180.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(180.f);
+			Error += glm::epsilonEqual(radians(a), pi, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), 180.f, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(-pi / 2);
-			Error += glm::epsilonEqual(rad(a), -pi / 2, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), -90.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(-pi / 2);
+			Error += glm::epsilonEqual(radians(a), -pi / 2, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), -90.f, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(-90.f);
-			Error += glm::epsilonEqual(rad(a), -pi / 2, 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(deg(a), -90.f, 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(-90.f);
+			Error += glm::epsilonEqual(radians(a), -pi / 2, 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(degrees(a), -90.f, 0.01f) ? 0 : 1;
 		}
 		return Error;
 	}
@@ -83,32 +83,32 @@ namespace
 		float y = static_cast<float>(std::max(std::rand(), 1)) / RAND_MAX;
 		
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(y);
-			Error += glm::epsilonEqual(x + y, rad(a + b), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(x - y, rad(a - b), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(y);
+			Error += glm::epsilonEqual(x + y, radians(a + b), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(x - y, radians(a - b), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			Error += glm::epsilonEqual(y * x, rad(y * a), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(x * y, rad(a * y), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			Error += glm::epsilonEqual(y * x, radians(y * a), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(x * y, radians(a * y), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			Error += glm::epsilonEqual(x / y, rad(a / y), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			Error += glm::epsilonEqual(x / y, radians(a / y), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(y);
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(y);
 			Error += glm::epsilonEqual(x / y, a / b, 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			Error += glm::epsilonEqual(+x, rad(+a), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			Error += glm::epsilonEqual(+x, radians(+a), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			Error += glm::epsilonEqual(-x, rad(-a), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			Error += glm::epsilonEqual(-x, radians(-a), 0.01f) ? 0 : 1;
 		}
 		
 		return Error;
@@ -120,22 +120,22 @@ namespace
 		float x = -static_cast<float>(std::max(std::rand(), 1)) / RAND_MAX;
 		float y = static_cast<float>(std::max(std::rand(), 1)) / RAND_MAX;
 		
-		Error += glm::rad(x) == glm::rad(x) ? 0 : 1;
-		Error += glm::rad(x) == glm::rad(y) ? 1 : 0;
-		Error += glm::rad(x) != glm::rad(x) ? 1 : 0;
-		Error += glm::rad(x) != glm::rad(y) ? 0 : 1;
+		Error += glm::fromRadians(x) == glm::fromRadians(x) ? 0 : 1;
+		Error += glm::fromRadians(x) == glm::fromRadians(y) ? 1 : 0;
+		Error += glm::fromRadians(x) != glm::fromRadians(x) ? 1 : 0;
+		Error += glm::fromRadians(x) != glm::fromRadians(y) ? 0 : 1;
 		
-		Error += glm::rad(x) < glm::rad(x) ? 1 : 0;
-		Error += glm::rad(x) < glm::rad(y) ? 0 : 1;
+		Error += glm::fromRadians(x) < glm::fromRadians(x) ? 1 : 0;
+		Error += glm::fromRadians(x) < glm::fromRadians(y) ? 0 : 1;
 		
-		Error += glm::rad(x) > glm::rad(x) ? 1 : 0;
-		Error += glm::rad(y) > glm::rad(x) ? 0 : 1;
+		Error += glm::fromRadians(x) > glm::fromRadians(x) ? 1 : 0;
+		Error += glm::fromRadians(y) > glm::fromRadians(x) ? 0 : 1;
 		
-		Error += glm::rad(x) <= glm::rad(x) ? 0 : 1;
-		Error += glm::rad(x) <= glm::rad(y) ? 0 : 1;
+		Error += glm::fromRadians(x) <= glm::fromRadians(x) ? 0 : 1;
+		Error += glm::fromRadians(x) <= glm::fromRadians(y) ? 0 : 1;
 		
-		Error += glm::rad(x) >= glm::rad(x) ? 0 : 1;
-		Error += glm::rad(y) >= glm::rad(x) ? 0 : 1;
+		Error += glm::fromRadians(x) >= glm::fromRadians(x) ? 0 : 1;
+		Error += glm::fromRadians(y) >= glm::fromRadians(x) ? 0 : 1;
 		return Error;
 	}
 
@@ -152,7 +152,7 @@ namespace
 		constexpr auto f = 3.f;
 		
 		// Force compile-time evaluation
-		static_assert((rad(a), true), "");
+		static_assert((radians(a), true), "");
 		static_assert((deg(a), true), "");
 		
 		static_assert((+a, true), "");
@@ -184,50 +184,50 @@ namespace
 		float y = static_cast<float>(std::max(std::rand(), 1)) / RAND_MAX;
 		float f = static_cast<float>(std::max(std::rand(), 1)) / RAND_MAX;
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(-x);
-			Error += glm::epsilonEqual(x, rad(abs(b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(rad(a), rad(abs(b)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(-x);
+			Error += glm::epsilonEqual(x, radians(abs(b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(radians(a), radians(abs(b)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(100.f);
-			glm::fangle b = glm::rad(200.f);
-			glm::fangle c = a - glm::rad(x);
-			glm::fangle d = b + glm::rad(y);
-			glm::fangle e = glm::rad(150.f);
+			glm::fangle a = glm::fromRadians(100.f);
+			glm::fangle b = glm::fromRadians(200.f);
+			glm::fangle c = a - glm::fromRadians(x);
+			glm::fangle d = b + glm::fromRadians(y);
+			glm::fangle e = glm::fromRadians(150.f);
 			Error += clamp(c, a, b) <= b ? 0 : 1;
 			Error += clamp(c, a, b) >= a ? 0 : 1;
 			Error += clamp(d, a, b) <= b ? 0 : 1;
 			Error += clamp(d, a, b) >= a ? 0 : 1;
-			Error += glm::epsilonEqual(rad(clamp(e, a, b)), rad(e), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(radians(clamp(e, a, b)), radians(e), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(y);
-			Error += glm::epsilonEqual(std::max(x, y), rad(max(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(std::min(x, y), rad(min(a, b)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(y);
+			Error += glm::epsilonEqual(std::max(x, y), radians(max(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(std::min(x, y), radians(min(a, b)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(y);
-			Error += glm::epsilonEqual(glm::mix(x, y, f), rad(mix(a, b, f)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(x, rad(mix(a, b, false)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(y, rad(mix(a, b, true)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(y);
+			Error += glm::epsilonEqual(glm::mix(x, y, f), radians(mix(a, b, f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(x, radians(mix(a, b, false)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(y, radians(mix(a, b, true)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(x);
-			glm::fangle b = glm::rad(y);
-			Error += glm::epsilonEqual(glm::mod(x, y), rad(mod(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(glm::mod(y, x), rad(mod(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(x);
+			glm::fangle b = glm::fromRadians(y);
+			Error += glm::epsilonEqual(glm::mod(x, y), radians(mod(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(glm::mod(y, x), radians(mod(b, a)), 0.01f) ? 0 : 1;
 		}
 		{
-			Error += glm::epsilonEqual(1.f, sign(glm::rad(10.f)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(0.f, sign(glm::rad(0.f)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(-1.f, sign(glm::rad(-10.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(1.f, sign(glm::fromRadians(10.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(0.f, sign(glm::fromRadians(0.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(-1.f, sign(glm::fromRadians(-10.f)), 0.01f) ? 0 : 1;
 			
-			Error += glm::epsilonEqual(1.f, sign(glm::deg(10.f)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(0.f, sign(glm::deg(0.f)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(-1.f, sign(glm::deg(-10.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(1.f, sign(glm::fromDegrees(10.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(0.f, sign(glm::fromDegrees(0.f)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(-1.f, sign(glm::fromDegrees(-10.f)), 0.01f) ? 0 : 1;
 		}
 		return Error;
 	}
@@ -237,55 +237,55 @@ namespace
 		int Error(0);
 		
 		{
-			glm::fangle a = glm::rad(5 * pi);
-			Error += glm::epsilonEqual(pi, rad(normalize(a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(5 * pi);
+			Error += glm::epsilonEqual(pi, radians(normalize(a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(2 * pi);
-			Error += glm::epsilonEqual(0.f, rad(normalize(a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(2 * pi);
+			Error += glm::epsilonEqual(0.f, radians(normalize(a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(-pi / 2);
-			Error += glm::epsilonEqual(1.5f * pi, rad(normalize(a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(-pi / 2);
+			Error += glm::epsilonEqual(1.5f * pi, radians(normalize(a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(-pi * 2);
-			Error += glm::epsilonEqual(0.f, rad(normalize(a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(-pi * 2);
+			Error += glm::epsilonEqual(0.f, radians(normalize(a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::rad(5 * -pi);
-			Error += glm::epsilonEqual(pi, rad(normalize(a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromRadians(5 * -pi);
+			Error += glm::epsilonEqual(pi, radians(normalize(a)), 0.01f) ? 0 : 1;
 		}
 	
 		{
-			glm::fangle a = glm::deg(0.f);
-			glm::fangle b = glm::deg(90.f);
-			Error += glm::epsilonEqual(90.f, deg(distance(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(-90.f, deg(distance(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			glm::fangle b = glm::fromDegrees(90.f);
+			Error += glm::epsilonEqual(90.f, degrees(distance(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(-90.f, degrees(distance(b, a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(0.f);
-			glm::fangle b = glm::deg(180.f);
-			Error += glm::epsilonEqual(180.f, deg(distance(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(-180.f, deg(distance(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			glm::fangle b = glm::fromDegrees(180.f);
+			Error += glm::epsilonEqual(180.f, degrees(distance(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(-180.f, degrees(distance(b, a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(0.f);
-			glm::fangle b = glm::deg(270.f);
-			Error += glm::epsilonEqual(-90.f, deg(distance(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(90.f, deg(distance(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			glm::fangle b = glm::fromDegrees(270.f);
+			Error += glm::epsilonEqual(-90.f, degrees(distance(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(90.f, degrees(distance(b, a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(0.f);
-			glm::fangle b = glm::deg(360.f);
-			Error += glm::epsilonEqual(0.f, deg(distance(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(0.f, deg(distance(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(0.f);
+			glm::fangle b = glm::fromDegrees(360.f);
+			Error += glm::epsilonEqual(0.f, degrees(distance(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(0.f, degrees(distance(b, a)), 0.01f) ? 0 : 1;
 		}
 		{
-			glm::fangle a = glm::deg(10.f);
-			glm::fangle b = glm::deg(350.f);
-			Error += glm::epsilonEqual(-20.f, deg(distance(a, b)), 0.01f) ? 0 : 1;
-			Error += glm::epsilonEqual(20.f, deg(distance(b, a)), 0.01f) ? 0 : 1;
+			glm::fangle a = glm::fromDegrees(10.f);
+			glm::fangle b = glm::fromDegrees(350.f);
+			Error += glm::epsilonEqual(-20.f, degrees(distance(a, b)), 0.01f) ? 0 : 1;
+			Error += glm::epsilonEqual(20.f, degrees(distance(b, a)), 0.01f) ? 0 : 1;
 		}
 
 		return Error;
@@ -299,13 +299,13 @@ namespace
 		float y = static_cast<float>(std::rand());
 
 		{
-			glm::fangle a = glm::rad(x);
+			glm::fangle a = glm::fromRadians(x);
 			Error += glm::epsilonEqual(std::cos(x), cos(a), 0.0001f) ? 0 : 1;
 			Error += glm::epsilonEqual(std::sin(x), sin(a), 0.0001f) ? 0 : 1;
 			Error += glm::epsilonEqual(std::tan(x), tan(a), 0.0001f) ? 0 : 1;
 		}
-		Error += glm::epsilonEqual(std::atan2(y, x), rad(glm::atan2(y, x)), 0.0001f) ? 0 : 1;
-		Error += glm::epsilonEqual(std::atan2(y, x), rad(glm::atan2(glm::vec2(x, y))), 0.0001f) ? 0 : 1;
+		Error += glm::epsilonEqual(std::atan2(y, x), radians(glm::atan2(y, x)), 0.0001f) ? 0 : 1;
+		Error += glm::epsilonEqual(std::atan2(y, x), radians(glm::atan2(glm::vec2(x, y))), 0.0001f) ? 0 : 1;
 		
 		return Error;
 	}

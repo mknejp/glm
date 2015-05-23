@@ -93,20 +93,20 @@ namespace glm
 	
 	/// Create an angle from radians
 	template <typename T>
-	GLM_FUNC_DECL GLM_CONSTEXPR tangle<T> rad(T radians);
+	GLM_FUNC_DECL GLM_CONSTEXPR tangle<T> fromRadians(T radians);
 	/// Create an angle from degrees
 	template <typename T>
-	GLM_FUNC_DECL GLM_CONSTEXPR tangle<T> deg(T degrees);
+	GLM_FUNC_DECL GLM_CONSTEXPR tangle<T> fromDegrees(T degrees);
 	
 	//////////////////////////////////////
 	// Explicit converting value access
 	
 	/// Extract an angle's magnitude converted to radians
 	template <typename T, precision P>
-	GLM_FUNC_DECL GLM_CONSTEXPR T rad(tangle<T, P> angle);
+	GLM_FUNC_DECL GLM_CONSTEXPR T radians(tangle<T, P> angle);
 	/// Extract an angle's magnitude converted to degrees
 	template <typename T, precision P>
-	GLM_FUNC_DECL GLM_CONSTEXPR T deg(tangle<T, P> angle);
+	GLM_FUNC_DECL GLM_CONSTEXPR T degrees(tangle<T, P> angle);
 	
 	//////////////////////////////////////
 	// Generic angle class defintion
@@ -115,7 +115,7 @@ namespace glm
 	class tangle
 	{
 	public:
-		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'angle' only accepts floating-point types");
+		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'tangle' only accepts floating-point types");
 		
 		typedef tangle<T, P> type;
 		typedef T value_type;
@@ -150,11 +150,11 @@ namespace glm
 		GLM_FUNC_DECL tangle<T, P> & operator/=(U rhs);
 		
 	private:
-		friend GLM_CONSTEXPR tangle rad<T>(T radians);
-		friend GLM_CONSTEXPR tangle deg<T>(T degrees);
+		friend GLM_CONSTEXPR tangle fromRadians<T>(T radians);
+		friend GLM_CONSTEXPR tangle fromDegrees<T>(T degrees);
 		
-		friend GLM_CONSTEXPR T rad<T, P>(tangle radians);
-		friend GLM_CONSTEXPR T deg<T, P>(tangle degrees);
+		friend GLM_CONSTEXPR T radians<T, P>(tangle angle);
+		friend GLM_CONSTEXPR T degrees<T, P>(tangle angle);
 		
 		GLM_FUNC_DECL GLM_CONSTEXPR tangle(T radians);
 		

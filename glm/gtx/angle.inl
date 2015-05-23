@@ -119,13 +119,13 @@ namespace glm
 	{}
 
 	template <typename T>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T> rad(T radians)
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T> fromRadians(T radians)
 	{
 		return tangle<T>(radians);
 	}
 	
 	template <typename T>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T> deg(T degrees)
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T> fromDegrees(T degrees)
 	{
 		// glm::radians is not constexpr
 		return tangle<T>(degrees * static_cast<T>(0.01745329251994329576923690768489));
@@ -135,13 +135,13 @@ namespace glm
 	// Explicit converting value access
 	
 	template <typename T, precision P>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T rad(tangle<T, P> angle)
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T radians(tangle<T, P> angle)
 	{
 		return angle._radians;
 	}
 
 	template <typename T, precision P>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T deg(tangle<T, P> angle)
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T degrees(tangle<T, P> angle)
 	{
 		// glm::degrees is not constexpr
 		return angle._radians * static_cast<T>(57.295779513082320876798154814105);
@@ -159,7 +159,7 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator-(tangle<T, P> angle)
 	{
-		return rad(-rad(angle));
+		return fromRadians(-radians(angle));
 	}
 	
 	//////////////////////////////////////
@@ -168,37 +168,37 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator+(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(rad(lhs) + rad(rhs));
+		return fromRadians(radians(lhs) + radians(rhs));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator-(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(rad(lhs) - rad(rhs));
+		return fromRadians(radians(lhs) - radians(rhs));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator*(tangle<T, P> lhs, T rhs)
 	{
-		return rad(rad(lhs) * rhs);
+		return fromRadians(radians(lhs) * rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator*(T lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs * rad(rhs));
+		return fromRadians(lhs * radians(rhs));
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tangle<T, P> operator/(tangle<T, P> lhs, T rhs)
 	{
-		return rad(rad(lhs) / rhs);
+		return fromRadians(radians(lhs) / rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T operator/(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) / rad(rhs);
+		return radians(lhs) / radians(rhs);
 	}
 
 	//////////////////////////////////////
@@ -207,37 +207,37 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator==(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) == rad(rhs);
+		return radians(lhs) == radians(rhs);
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator!=(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) != rad(rhs);
+		return radians(lhs) != radians(rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator<=(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) <= rad(rhs);
+		return radians(lhs) <= radians(rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator>=(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) >= rad(rhs);
+		return radians(lhs) >= radians(rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator<(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) < rad(rhs);
+		return radians(lhs) < radians(rhs);
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator>(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(lhs) > rad(rhs);
+		return radians(lhs) > radians(rhs);
 	}
 	
 	//////////////////////////////////////
@@ -246,31 +246,31 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> abs(tangle<T, P> arg)
 	{
-		return rad(abs(rad(arg)));
+		return fromRadians(abs(radians(arg)));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> clamp(tangle<T, P> x, tangle<T, P> minVal, tangle<T, P> maxVal)
 	{
-		return rad(clamp(rad(x), rad(minVal), rad(maxVal)));
+		return fromRadians(clamp(radians(x), radians(minVal), radians(maxVal)));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> max(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(max(rad(lhs), rad(rhs)));
+		return fromRadians(max(radians(lhs), radians(rhs)));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> min(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(min(rad(lhs), rad(rhs)));
+		return fromRadians(min(radians(lhs), radians(rhs)));
 	}
 
 	template <typename T, precision P, typename U>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> mix(tangle<T, P> x, tangle<T, P> y, U a)
 	{
-		return rad(mix(rad(x), rad(y), a));
+		return fromRadians(mix(radians(x), radians(y), a));
 	}
 
 	template <typename T, precision P>
@@ -282,13 +282,13 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> mod(tangle<T, P> lhs, tangle<T, P> rhs)
 	{
-		return rad(mod(rad(lhs), rad(rhs)));
+		return fromRadians(mod(radians(lhs), radians(rhs)));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T sign(tangle<T, P> arg)
 	{
-		return sign(rad(arg));
+		return sign(radians(arg));
 	}
 
 	//////////////////////////////////////
@@ -297,16 +297,16 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> normalize(tangle<T, P> arg)
 	{
-		tangle<T, P> x = mod(arg, deg(static_cast<T>(360)));
-		return x < deg(static_cast<T>(0)) ? x + deg(static_cast<T>(360)) : x;
+		tangle<T, P> x = mod(arg, fromDegrees(static_cast<T>(360)));
+		return x < fromDegrees(static_cast<T>(0)) ? x + fromDegrees(static_cast<T>(360)) : x;
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> distance(tangle<T, P> from, tangle<T, P> to)
 	{
-		if(abs(to - from) > deg(static_cast<T>(180)))
+		if(abs(to - from) > fromDegrees(static_cast<T>(180)))
 		{
-			return (from > to ? to + deg(static_cast<T>(360)) : to - deg(static_cast<T>(360))) - from;
+			return (from > to ? to + fromDegrees(static_cast<T>(360)) : to - fromDegrees(static_cast<T>(360))) - from;
 		}
 		else
 		{
@@ -320,49 +320,49 @@ namespace glm
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T cos(tangle<T, P> arg)
 	{
-		return std::cos(rad(arg));
+		return std::cos(radians(arg));
 	}
 	
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T sin(tangle<T, P> arg)
 	{
-		return std::sin(rad(arg));
+		return std::sin(radians(arg));
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T tan(tangle<T, P> arg)
 	{
-		return std::tan(rad(arg));
+		return std::tan(radians(arg));
 	}
 
 	template <typename T>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T> atan2(T y, T x)
 	{
-		return rad(std::atan2(y, x));
+		return fromRadians(std::atan2(y, x));
 	}
 
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T, P> atan2(tvec2<T, P> const & v)
 	{
-		return rad(std::atan2(v.y, v.x));
+		return fromRadians(std::atan2(v.y, v.x));
 	}
 
 //	template <typename T>
 //	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T> acos(T arg)
 //	{
-//		return rad(std::acos(arg));
+//		return fromRadians(std::acos(arg));
 //	}
 //
 //	template <typename T>
 //	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T> asin(T arg)
 //	{
-//		return rad(std::asin(arg));
+//		return fromRadians(std::asin(arg));
 //	}
 //
 //	template <typename T>
 //	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tangle<T> atan(T arg)
 //	{
-//		return rad(std::atan(arg));
+//		return fromRadians(std::atan(arg));
 //	}
 
 	//////////////////////////////////////
@@ -371,37 +371,37 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> infinitePerspective(tangle<T, P> fovy, T aspect, T near)
 	{
-		return infinitePerspective(rad(fovy), aspect, near);
+		return infinitePerspective(radians(fovy), aspect, near);
 	}
 
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> perspective(tangle<T, P> fovy, T aspect, T near, T far)
 	{
-		return perspective(rad(fovy), aspect, near, far);
+		return perspective(radians(fovy), aspect, near, far);
 	}
 	
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> perspectiveFov(tangle<T, P> fov, T width, T height, T near, T far)
 	{
-		return prespectiveFov(rad(fov), width, height, near, far);
+		return prespectiveFov(radians(fov), width, height, near, far);
 	}
 
 	template<typename T , precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> rotate(tmat4x4<T, P> const & m, tangle<T, P> angle, tvec3<T, P> const & axis)
 	{
-		return rotate(m, rad(angle), axis);
+		return rotate(m, radians(angle), axis);
 	}
 	
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> tweakedInfinitePerspective(tangle<T, P> fovy, T aspect, T near)
 	{
-		return tweakedInfinitePerspective(rad(fovy), aspect, near);
+		return tweakedInfinitePerspective(radians(fovy), aspect, near);
 	}
 	
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> tweakedInfinitePerspective(tangle<T, P> fovy, T aspect, T near, T ep)
 	{
-		return tweakedInfinitePerspective(rad(fovy), aspect, near, ep);
+		return tweakedInfinitePerspective(radians(fovy), aspect, near, ep);
 	}
 
 	//////////////////////////////////////
@@ -413,7 +413,7 @@ namespace glm
 	template<typename T , precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tquat<T, P> angleAxis(tangle<T, P> angle, tvec3<T, P> const & axis)
 	{
-		return angleAxis(rad(angle), axis);
+		return angleAxis(radians(angle), axis);
 	}
 	
 //	template<typename T, precision P>
@@ -422,7 +422,7 @@ namespace glm
 	template<typename T , precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tquat<T, P> rotate(tquat< T, P > const & q, tangle<T, P> angle, tvec3<T, P> const & axis)
 	{
-		return rotate(q, rad(angle), axis);
+		return rotate(q, radians(angle), axis);
 	}
 	
 //	template<typename T, precision P>
@@ -449,19 +449,19 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T fastCos(tangle<T, P> angle)
 	{
-		return fastCos(rad(angle));
+		return fastCos(radians(angle));
 	}
 	
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T fastSin(tangle<T, P> angle)
 	{
-		return fastSin(rad(angle));
+		return fastSin(radians(angle));
 	}
 	
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ T fastTan(tangle<T, P> angle)
 	{
-		return fastTan(rad(angle));
+		return fastTan(radians(angle));
 	}
 
 	//////////////////////////////////////
@@ -470,13 +470,13 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER void axisAngle(tmat4x4<T, P> const & mat, tvec3<T, P> & axis, tangle<T, P> angle)
 	{
-		return axisAngle(mat, axis, rad(angle));
+		return axisAngle(mat, axis, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> axisAngleMatrix(tvec3<T, P> const & axis, tangle<T, P> angle)
 	{
-		return axisAngleMatrix(axis, rad(angle));
+		return axisAngleMatrix(axis, radians(angle));
 	}
 	
 	//////////////////////////////////////
@@ -485,7 +485,7 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat3x3<T, P> rotate(tmat3x3<T, P> const & m, tangle<T, P> angle)
 	{
-		return rotate(m, rad(angle));
+		return rotate(m, radians(angle));
 	}
 	
 	//////////////////////////////////////
@@ -494,13 +494,13 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4<T, P> rotateNormalizedAxis(tmat4x4<T, P> const & m, tangle<T, P> angle, tvec3<T, P> const & axis)
 	{
-		return rotateNormalizedAxis(m, rad(angle), axis);
+		return rotateNormalizedAxis(m, radians(angle), axis);
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tquat<T, P> rotateNormalizedAxis(tquat<T, P> const & q, tangle<T, P> angle, tvec3<T, P> const & axis)
 	{
-		return rotateNormalizedAxis(q, rad(angle), axis);
+		return rotateNormalizedAxis(q, radians(angle), axis);
 	}
 	
 	//////////////////////////////////////
@@ -509,55 +509,55 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec2<T, P> rotate(tvec2<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotate(v, rad(angle));
+		return rotate(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec3<T, P> rotate(tvec3<T, P> const & v, tangle<T, P> angle, tvec3<T, P> const & normal)
 	{
-		return rotate(v, rad(angle), normal);
+		return rotate(v, radians(angle), normal);
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec4<T, P> rotate(tvec4<T, P> const & v, tangle<T, P> angle, tvec3<T, P> const & normal)
 	{
-		return rotate(v, rad(angle), normal);
+		return rotate(v, radians(angle), normal);
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec3<T, P> rotateX(tvec3<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateX(v, rad(angle));
+		return rotateX(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec4<T, P> rotateX(tvec4<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateX(v, rad(angle));
+		return rotateX(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec3<T, P> rotateY(tvec3<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateY(v, rad(angle));
+		return rotateY(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec4<T, P> rotateY(tvec4<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateY(v, rad(angle));
+		return rotateY(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec3<T, P> rotateZ(tvec3<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateZ(v, rad(angle));
+		return rotateZ(v, radians(angle));
 	}
  
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tvec4<T, P> rotateZ(tvec4<T, P> const & v, tangle<T, P> angle)
 	{
-		return rotateZ(v, rad(angle));
+		return rotateZ(v, radians(angle));
 	}
 	
 	//////////////////////////////////////
@@ -566,7 +566,7 @@ namespace glm
 	template<typename T, precision P>
 	GLM_FUNC_QUALIFIER /*GLM_CONSTEXPR*/ tmat4x4< T, P > rotate(tangle<T, P> angle, tvec3< T, P > const & v)
 	{
-		return rotate(rad(angle), v);
+		return rotate(radians(angle), v);
 	}
 	
 	//////////////////////////////////////
